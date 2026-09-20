@@ -3,11 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="0; url=./Tracey_James_Digital_Profile_FIXED.html">
 <title>Tracey James | Digital Profile</title>
-<script>window.location.replace('./Tracey_James_Digital_Profile_FIXED.html');</script>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff}
+iframe{border:0;width:100%;height:100%;display:block}
+</style>
 </head>
 <body>
-<p><a href="./Tracey_James_Digital_Profile_FIXED.html">Open Tracey James Digital Profile</a></p>
+<iframe id="profile" src="./Tracey_James_Digital_Profile_FIXED.html" title="Tracey James Digital Profile"></iframe>
+<script>
+const PDF_PATH = './Tracey_James_Resume_Sep_2026.pdf';
+const frame = document.getElementById('profile');
+frame.addEventListener('load', () => {
+  try {
+    const doc = frame.contentDocument || frame.contentWindow.document;
+    const links = [...doc.querySelectorAll('a')];
+    links.forEach(a => {
+      const txt = (a.textContent || '').trim().toLowerCase();
+      const href = (a.getAttribute('href') || '').toLowerCase();
+      if (txt.includes('cv') || href.includes('.docx') || href.includes('wordprocessingml')) {
+        a.setAttribute('href', PDF_PATH);
+        a.setAttribute('download', 'Tracey James Resume - Sep 2026.pdf');
+      }
+    });
+  } catch (e) {
+    console.error('Could not update CV links', e);
+  }
+});
+</script>
 </body>
 </html>
